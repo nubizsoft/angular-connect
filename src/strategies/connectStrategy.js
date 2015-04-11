@@ -12,7 +12,14 @@ angular.module('angular-connect')
         };
 
         connectStrategy.prototype.logout = function logout() {
-            console.log("connectStrategy:logout");
+            return $q.when();
+        };
+
+        connectStrategy.prototype.serializeUser = function serializeUser() {
+            return $q.when();
+        };
+
+        connectStrategy.prototype.deserializeUser = function serializeUser() {
             return $q.when();
         };
 

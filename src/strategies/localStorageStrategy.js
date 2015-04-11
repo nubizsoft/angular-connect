@@ -5,6 +5,10 @@ angular.module('angular-connect')
             connectStrategy.apply(this, options);
 
             this.name = 'session';
+
+            connectProvider.serializeUser(function(user){
+
+            });
         };
 
         localStorageStrategy.prototype = new connectStrategy();

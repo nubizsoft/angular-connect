@@ -4,6 +4,7 @@ var connectFiles = {
         'src/connectProvider.js',
         'src/strategies/connectStrategy.js',
         'src/strategies/localStorageStrategy.js',
+        'src/strategies/cookiesStrategy.js',
         'src/strategies/ensureLoginStrategy.js',
         'src/strategies/ensureLogoutStrategy.js',
         'src/framework/ngrouteFramework.js'
@@ -25,7 +26,8 @@ var connectFiles = {
             return [
                 'lib/angular/angular.js',
                 'lib/angular-route/angular-route.js',
-                'lib/angular-mocks/angular-mocks.js'
+                'lib/angular-mocks/angular-mocks.js',
+                'lib/angular-cookies/angular-cookies.js'
             ]
         }
     }

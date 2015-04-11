@@ -3,6 +3,7 @@ angular.module('angular-connect')
     .provider('connect', function connectProvider() {
         var _userPropertyName = 'user',
             _strategies = {},
+            _serializers = [],
             _framework = null;
 
         this.userPropertyName = function userPropertyName(name) {
@@ -18,6 +19,7 @@ angular.module('angular-connect')
             }
         };
 
+
         /**
          * @ngdoc object
          * @name angular-connect.connect
@@ -32,10 +34,17 @@ angular.module('angular-connect')
                         throw new Error('Framework is not defined');
                     }
                     console.log("connectInstance:login");
-                    return _framework.login(name, options).then(function resolve(user) {
-                        console.log("connectInstance:login:resolve");
-                        $rootScope[_userPropertyName] = user;
-                    });
+                    return _framework.login(name, options)
+                        .then(function resolve(user) {
+                            console.log("connectInstance:login:resolve");
+                            $rootScope[_userPropertyName] = user;
+
+                            var map = _serializers.map(function (serializer) {
+                                return $q.when(user).then(serializer);
+                            });
+
+                            return $q.all(map);
+                        });
                 },
 
                 logout: function login(name, options) {
@@ -50,6 +59,12 @@ angular.module('angular-connect')
                         }
                     }).then(function resolve() {
                         delete $rootScope[_userPropertyName];
+
+                        var map = _serializers.map(function (serializer) {
+                            return $q.when().then(serializer);
+                        });
+
+                        return $q.all(map);
                     });
                 },
 
@@ -89,10 +104,13 @@ angular.module('angular-connect')
                     return this;
                 },
 
+                serializeUser: function serializeUser(fn) {
+                    _serializers.push(fn);
+                },
+
                 isAuthenticated: function isAuthenticated() {
                     return ($rootScope[_userPropertyName]) ? true : false;
                 }
             };
         };
-    })
-;
+    });

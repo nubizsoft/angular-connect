@@ -1,1 +1,1 @@
-angular.module('angular-connect', ['ngRoute']);
+angular.module('angular-connect', ['ngRoute', 'ngCookies']);
