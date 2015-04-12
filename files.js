@@ -5,6 +5,7 @@ var connectFiles = {
         'src/strategies/connectStrategy.js',
         'src/strategies/localStorageStrategy.js',
         'src/strategies/cookiesStrategy.js',
+        'src/strategies/sessionStrategy.js',
         'src/strategies/ensureLoginStrategy.js',
         'src/strategies/ensureLogoutStrategy.js',
         'src/framework/ngrouteFramework.js'
