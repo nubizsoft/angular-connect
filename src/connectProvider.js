@@ -110,6 +110,10 @@ angular.module('angular-connect')
 
                 isAuthenticated: function isAuthenticated() {
                     return ($rootScope[_userPropertyName]) ? true : false;
+                },
+
+                userPropertyName: function userPropertyName(){
+                    return _userPropertyName;
                 }
             };
         };

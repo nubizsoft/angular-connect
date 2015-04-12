@@ -19,7 +19,7 @@ angular.module('angular-connect')
                 this.name = 'cookies';
             };
 
-            cookiesStrategy.prototype = connectStrategy;
+            cookiesStrategy.prototype = new connectStrategy();
 
             cookiesStrategy.prototype.login = function login(options) {
 

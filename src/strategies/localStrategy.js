@@ -1,5 +1,5 @@
 angular.module('angular-connect')
-    .factory('sessionStrategy', function cookiesStrategyProvider($q, connect, connectStrategy) {
+    .factory('localStrategy', function cookiesStrategyProvider($q, connect, connectStrategy) {
 
         var defaults = {
             redirectTo: ''
@@ -9,19 +9,19 @@ angular.module('angular-connect')
 
         connect.serializeUser(function (user) {
             if (user) {
-                sessionStorage[userPropertyName] = user;
+                localStorage[userPropertyName] = user;
             } else {
-                sessionStorage.removeItem(userPropertyName);
+                localStorage.removeItem(userPropertyName);
             }
         });
 
-        var sessionStrategy = function () {
-            this.name = 'session';
+        var localStrategy = function () {
+            this.name = 'local';
         };
 
-        sessionStrategy.prototype = new connectStrategy();
+        localStrategy.prototype = new connectStrategy();
 
-        sessionStrategy.prototype.login = function login(options) {
+        localStrategy.prototype.login = function login(options) {
 
             options = options || {};
             options.redirectTo = options.redirectTo || defaults.redirectTo;
@@ -29,7 +29,7 @@ angular.module('angular-connect')
             return $q.when().then(function () {
                 var deferred = $q.defer();
 
-                var user = sessionStorage.getItem(userPropertyName);
+                var user = localStorage.getItem(userPropertyName);
 
                 if (!user) {
                     deferred.reject({redirectTo: options.redirectTo});
@@ -41,6 +41,6 @@ angular.module('angular-connect')
             });
         };
 
-        return sessionStrategy;
+        return localStrategy;
 
     });

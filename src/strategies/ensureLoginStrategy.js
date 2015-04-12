@@ -10,7 +10,7 @@ angular.module('angular-connect')
             this.name = 'ensureLogin';
         };
 
-        ensureLoginStrategy.prototype = connectStrategy;
+        ensureLoginStrategy.prototype = new connectStrategy();
 
         ensureLoginStrategy.prototype.login = function login(options) {
 
@@ -30,5 +30,5 @@ angular.module('angular-connect')
             });
         };
 
-        return new ensureLoginStrategy();
+        return ensureLoginStrategy;
     });

@@ -9,7 +9,7 @@ angular.module('angular-connect')
             this.name = 'ensureLogout';
         };
 
-        ensureLogoutStrategy.prototype = connectStrategy;
+        ensureLogoutStrategy.prototype = new connectStrategy();
 
         ensureLogoutStrategy.prototype.logout = function logout(options) {
 
@@ -31,5 +31,5 @@ angular.module('angular-connect')
             });
         };
 
-        return new ensureLogoutStrategy();
+        return ensureLogoutStrategy;
     });

@@ -5,10 +5,10 @@ describe('$route', function () {
         element;
 
     beforeEach(function () {
-        angular.module('angular-connect.test', {}).run(function ($q, connect, ensureLoginStrategy, alwaysStrategy, ngrouteFramework) {
+        angular.module('angular-connect.test', {}).run(function ($q, connect, localStrategy, alwaysStrategy, ngrouteFramework) {
 
             connect.framework(ngrouteFramework);
-            connect.use(new ensureLoginStrategy());
+            connect.use(new localStrategy());
 
             alwaysStrategy.login.andCallFake(function () {
                 return $q.when().then(function () {
@@ -49,7 +49,7 @@ describe('$route', function () {
                 id: 'secure',
                 resolve: {
                     isLogged: function (connect) {
-                        return connect.login('ensureLogin');
+                        return connect.login('local');
                     }
                 }
             });
@@ -70,7 +70,7 @@ describe('$route', function () {
                 id: 'secure',
                 resolve: {
                     connect: function (connect) {
-                        return connect.login('ensureLogin', {redirectTo: '/login'});
+                        return connect.login('local', {redirectTo: '/login'});
                     }
                 }
             });
@@ -92,7 +92,7 @@ describe('$route', function () {
                 id: 'secure',
                 resolve: {
                     connect: function (connect) {
-                        return connect.login('ensureLogin', {redirectTo: '/login'});
+                        return connect.login('local', {redirectTo: '/login'});
                     }
                 }
             })
@@ -106,16 +106,56 @@ describe('$route', function () {
                 });
         });
 
-        inject(function ($route, $location, $rootScope, $compile) {
+        inject(function ($route, $location, $rootScope, $compile, connect) {
             $rootScope.$apply(function () {
                 $location.path('/authenticate');
             });
             expect($location.path()).toBe('/authenticate');
 
+            //connect.logout();
+
             $rootScope.$apply(function () {
                 $location.path('/secure');
             });
+
             expect($location.path()).toBe('/secure');
+        });
+    });
+
+    it('it should redirect after logout', function () {
+
+        module(function ($routeProvider) {
+            $routeProvider.when('/secure', {
+                id: 'secure',
+                resolve: {
+                    connect: function (connect) {
+                        return connect.login('local', {redirectTo: '/login'});
+                    }
+                }
+            })
+                .when('/authenticate', {
+                    id: 'authenticate',
+                    resolve: {
+                        connect: function (connect) {
+                            return connect.login('always');
+                        }
+                    }
+                });
+        });
+
+        inject(function ($route, $location, $rootScope, $compile, connect) {
+            $rootScope.$apply(function () {
+                $location.path('/authenticate');
+            });
+            expect($location.path()).toBe('/authenticate');
+
+            connect.logout();
+
+            $rootScope.$apply(function () {
+                $location.path('/secure');
+            });
+
+            expect($location.path()).toBe('/login');
         });
     });
 });

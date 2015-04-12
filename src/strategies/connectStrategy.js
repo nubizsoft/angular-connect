@@ -23,5 +23,5 @@ angular.module('angular-connect')
             return $q.when();
         };
 
-        return new connectStrategy();
+        return connectStrategy;
     });

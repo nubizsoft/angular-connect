@@ -8,7 +8,7 @@ describe('$route', function () {
         angular.module('angular-connect.test', {}).run(function ($q, connect, ensureLogoutStrategy, alwaysStrategy, ngrouteFramework) {
 
             connect.framework(ngrouteFramework);
-            connect.use(ensureLogoutStrategy);
+            connect.use(new ensureLogoutStrategy());
 
             alwaysStrategy.login.andCallFake(function () {
                 return $q.when().then(function () {
