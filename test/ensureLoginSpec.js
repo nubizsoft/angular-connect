@@ -1,13 +1,13 @@
 'use strict';
 
-describe('$route', function () {
+describe('ensureLoginStrategy', function () {
     var $httpBackend,
         element;
 
     beforeEach(function () {
-        angular.module('angular-connect.test', {}).run(function ($q, connect, ensureLoginStrategy, alwaysStrategy, ngrouteFramework) {
+        angular.module('angular-connect.test', {}).run(function ($q, connect, ensureLoginStrategy, alwaysStrategy, ngRouteFramework) {
 
-            connect.framework(ngrouteFramework);
+            connect.framework(ngRouteFramework);
             connect.use(new ensureLoginStrategy());
 
             alwaysStrategy.login.andCallFake(function () {

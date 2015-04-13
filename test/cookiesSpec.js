@@ -1,13 +1,13 @@
 'use strict';
 
-describe('$route', function () {
+describe('cookiesStrategy', function () {
     var $httpBackend,
         element;
 
     beforeEach(function () {
-        angular.module('angular-connect.test', {}).run(function ($q, connect, cookiesStrategy, alwaysStrategy, ngrouteFramework) {
+        angular.module('angular-connect.test', {}).run(function ($q, connect, cookiesStrategy, alwaysStrategy, ngRouteFramework) {
 
-            connect.framework(ngrouteFramework);
+            connect.framework(ngRouteFramework);
             connect.use(new cookiesStrategy());
 
             alwaysStrategy.login.andCallFake(function () {

@@ -1,13 +1,13 @@
 'use strict';
 
-describe('$route', function () {
+describe('localStrategy', function () {
     var $httpBackend,
         element;
 
     beforeEach(function () {
-        angular.module('angular-connect.test', {}).run(function ($q, connect, localStrategy, alwaysStrategy, ngrouteFramework) {
+        angular.module('angular-connect.test', {}).run(function ($q, connect, localStrategy, alwaysStrategy, ngRouteFramework) {
 
-            connect.framework(ngrouteFramework);
+            connect.framework(ngRouteFramework);
             connect.use(new localStrategy());
 
             alwaysStrategy.login.andCallFake(function () {

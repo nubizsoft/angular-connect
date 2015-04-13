@@ -8,7 +8,8 @@ var connectFiles = {
         'src/strategies/sessionStrategy.js',
         'src/strategies/ensureLoginStrategy.js',
         'src/strategies/ensureLogoutStrategy.js',
-        'src/framework/ngrouteFramework.js'
+        'src/framework/ngRouteFramework.js',
+        'src/framework/uiRouterFramework.js'
     ],
     testUtils: [
         'test/testUtils.js'
@@ -26,6 +27,7 @@ var connectFiles = {
         else {
             return [
                 'lib/angular/angular.js',
+                'lib/ui-router/release/angular-ui-router.js',
                 'lib/angular-route/angular-route.js',
                 'lib/angular-mocks/angular-mocks.js',
                 'lib/angular-cookies/angular-cookies.js'

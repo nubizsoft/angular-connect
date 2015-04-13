@@ -86,7 +86,7 @@ describe("connect", function () {
         }));
 
         it("should login a user", function () {
-            inject(function ($rootScope, $q, connect, alwaysStrategy, ngrouteFramework) {
+            inject(function ($rootScope, $q, connect, alwaysStrategy, ngRouteFramework) {
                 var user = {name: 'toto'}
 
                 alwaysStrategy.name = 'always';
@@ -95,7 +95,7 @@ describe("connect", function () {
                 })
 
                 connect.use(alwaysStrategy);
-                connect.framework(ngrouteFramework);
+                connect.framework(ngRouteFramework);
 
                 connect.login('always').then(function success() {
                     expect(connect.user()).toBe(user);
@@ -107,8 +107,8 @@ describe("connect", function () {
             });
         });
 
-        it("should logout a user", inject(function (connect, ngrouteFramework) {
-            connect.framework(ngrouteFramework);
+        it("should logout a user", inject(function (connect, ngRouteFramework) {
+            connect.framework(ngRouteFramework);
             connect.logout();
             expect(connect.user()).toBeUndefined();
             expect(connect.isAuthenticated()).toBe(false);
