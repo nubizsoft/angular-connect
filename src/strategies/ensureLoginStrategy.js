@@ -5,9 +5,12 @@ angular.module('angular-connect')
             redirectTo: ''
         };
 
-        var ensureLoginStrategy = function () {
+        var ensureLoginStrategy = function (options) {
 
             this.name = 'ensureLogin';
+            options = angular.extend({}, options, defaults);
+            connectStrategy.call(this.options);
+
         };
 
         ensureLoginStrategy.prototype = new connectStrategy();

@@ -5,8 +5,10 @@ angular.module('angular-connect')
             redirectTo: ''
         };
 
-        var ensureLogoutStrategy = function () {
+        var ensureLogoutStrategy = function (options) {
             this.name = 'ensureLogout';
+            options = angular.extend({}, options, defaults);
+            connectStrategy.call(this.options);
         };
 
         ensureLogoutStrategy.prototype = new connectStrategy();

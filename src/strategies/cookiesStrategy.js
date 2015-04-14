@@ -15,8 +15,11 @@ angular.module('angular-connect')
                 }
             });
 
-            var cookiesStrategy = function () {
+            var cookiesStrategy = function (options) {
                 this.name = 'cookies';
+
+                options = angular.extend({}, options, defaults);
+                connectStrategy.call(this.options);
             };
 
             cookiesStrategy.prototype = new connectStrategy();

@@ -4,6 +4,7 @@ angular.module('angular-connect')
         var options = this.options = {};
 
         var connectStrategy = function (options) {
+            console.log('connectStrategy:Constructor:options', options);
             this.options = options || {};
         };
 

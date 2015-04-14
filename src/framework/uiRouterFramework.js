@@ -1,18 +1,16 @@
-angular.module('angular-connect')
-    .service('ngRouteFramework', function ($rootScope, connect, $location, $q) {
+angular.module('angular-connect-uiRouter', ['angular-connect', 'ui.router'])
+    .service('uiRouterFramework', function ($rootScope, connect, $location, $q) {
 
-        $rootScope.$on('$routeChangeError', function (event, next, current, error) {
-            console.log(error);
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
             if (error.redirectTo !== undefined) {
-                console.log('redirectTo', error.redirectTo);
                 $rootScope.$evalAsync(function () {
                     $location.path(error.redirectTo);
                 });
             }
         });
 
-        $rootScope.$on('$routeChangeSuccess', function (event, next, current, error) {
-            console.log('success', error);
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            console.log('success');
         });
 
         return {
