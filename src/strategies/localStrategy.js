@@ -21,7 +21,7 @@ angular.module('angular-connect')
 
         localStrategy.prototype = new connectStrategy();
 
-        localStrategy.prototype.login = function login(options) {
+        localStrategy.prototype.login = function login(params, options) {
 
             options = options || {};
             options.redirectTo = options.redirectTo || defaults.redirectTo;

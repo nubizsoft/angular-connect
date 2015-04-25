@@ -14,7 +14,7 @@ angular.module('angular-connect')
 
         facebookStrategy.prototype = new oauth2Strategy();
 
-        facebookStrategy.prototype.login = function login(options) {
+        facebookStrategy.prototype.login = function login(params, options) {
 
             options = options || {};
             options.redirectTo = options.redirectTo || defaults.redirectTo;

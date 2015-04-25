@@ -21,7 +21,7 @@ angular.module('angular-connect')
 
         sessionStrategy.prototype = new connectStrategy();
 
-        sessionStrategy.prototype.login = function login(options) {
+        sessionStrategy.prototype.login = function login(params, options) {
 
             options = options || {};
             options.redirectTo = options.redirectTo || defaults.redirectTo;

@@ -13,7 +13,7 @@ angular.module('angular-connect')
 
         ensureLogoutStrategy.prototype = new connectStrategy();
 
-        ensureLogoutStrategy.prototype.logout = function logout(options) {
+        ensureLogoutStrategy.prototype.logout = function logout(params, options) {
 
             console.log('ensureLogoutStrategy:logout');
 

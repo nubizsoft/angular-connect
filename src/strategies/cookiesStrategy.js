@@ -24,7 +24,7 @@ angular.module('angular-connect')
 
             cookiesStrategy.prototype = new connectStrategy();
 
-            cookiesStrategy.prototype.login = function login(options) {
+            cookiesStrategy.prototype.login = function login(params, options) {
 
                 options = options || {};
                 options.redirectTo =  options.redirectTo || defaults.redirectTo;

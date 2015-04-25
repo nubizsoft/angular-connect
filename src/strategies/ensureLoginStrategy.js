@@ -15,7 +15,7 @@ angular.module('angular-connect')
 
         ensureLoginStrategy.prototype = new connectStrategy();
 
-        ensureLoginStrategy.prototype.login = function login(options) {
+        ensureLoginStrategy.prototype.login = function login(params, options) {
 
             options = options || {};
             options.redirectTo =  options.redirectTo || defaults.redirectTo;

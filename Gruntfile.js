@@ -25,8 +25,8 @@ module.exports = function (grunt) {
                 'if (typeof module !== "undefined" && typeof exports !== "undefined" && module.exports === exports){\n'+
                 '  module.exports = \'angular-connect\';\n'+
                 '}\n\n'+
-                '(function (window, angular, undefined) {\n',
-                footer: '})(window, window.angular);'
+                '(function (window, angular, queryString, undefined) {\n',
+                footer: '})(window, window.angular, window.queryString);'
             },
             build: {
                 src: files.src,

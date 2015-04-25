@@ -5,6 +5,7 @@ var connectFiles = {
         'src/strategies/connectStrategy.js',
         'src/strategies/localStrategy.js',
         'src/strategies/cookiesStrategy.js',
+        'src/strategies/oauth2Strategy.js',
         'src/strategies/sessionStrategy.js',
         'src/strategies/ensureLoginStrategy.js',
         'src/strategies/ensureLogoutStrategy.js',
@@ -26,6 +27,7 @@ var connectFiles = {
         }
         else {
             return [
+                'lib/query-string/query-string.js',
                 'lib/angular/angular.js',
                 'lib/ui-router/release/angular-ui-router.js',
                 'lib/angular-route/angular-route.js',
