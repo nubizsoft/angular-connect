@@ -2,9 +2,9 @@ angular.module('angular-connect')
     .factory('connectStrategy', function ($q) {
 
         var options = this.options = {};
-        var connectStrategy = function (options) {
-            console.log('connectStrategy:Constructor:options', options);
+        var connectStrategy = function (options, verify) {
             this.options = options || {};
+            this.verify = verify;
         };
 
         connectStrategy.prototype.login = function login(params, options) {

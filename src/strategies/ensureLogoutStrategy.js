@@ -8,7 +8,7 @@ angular.module('angular-connect')
         var ensureLogoutStrategy = function (options) {
             this.name = 'ensureLogout';
             options = angular.extend({}, options, defaults);
-            connectStrategy.call(this.options);
+            connectStrategy.call(this, options);
         };
 
         ensureLogoutStrategy.prototype = new connectStrategy();

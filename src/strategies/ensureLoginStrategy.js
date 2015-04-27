@@ -9,7 +9,7 @@ angular.module('angular-connect')
 
             this.name = 'ensureLogin';
             options = angular.extend({}, options, defaults);
-            connectStrategy.call(this.options);
+            connectStrategy.call(this, options);
 
         };
 
@@ -19,7 +19,7 @@ angular.module('angular-connect')
 
             options = options || {};
             options.redirectTo =  options.redirectTo || defaults.redirectTo;
-
+            console.log(options);
             return $q.when().then(function(){
                 var deferred = $q.defer();
 

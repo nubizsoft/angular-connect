@@ -19,7 +19,7 @@ angular.module('angular-connect')
                 this.name = 'cookies';
 
                 options = angular.extend({}, options, defaults);
-                connectStrategy.call(this.options);
+                connectStrategy.call(options);
             };
 
             cookiesStrategy.prototype = new connectStrategy();
